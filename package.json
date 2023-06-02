@@ -2,7 +2,7 @@
   "name": "vscode-theme-oledge",
   "description": "The dark VSCode theme for OLED monitors",
   "private": true,
-  "version": "0.0.2",
+  "version": "1.0.0",
   "license": "MIT",
   "engines": {
     "vscode": "^1.78.0"
@@ -27,5 +27,15 @@
   },
   "bugs": {
     "url": "https://github.com/axross/vscode-theme-oledge/issues"
+  },
+  "dependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.1.0",
+    "@semantic-release/npm": "^10.0.3",
+    "@semantic-release/release-notes-generator": "^11.0.2",
+    "conventional-changelog-conventionalcommits": "^5.0.0",
+    "semantic-release": "^21.0.3"
   }
 }
