@@ -1,4 +1,7 @@
+.github/**
 .vscode/**
 .vscode-test/**
+node_modules/**
 .gitignore
-vsc-extension-quickstart.md
+commitlint.config.js
+release.config.js
