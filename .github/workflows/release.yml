@@ -1,0 +1,33 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "20"
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx \
+            --package=semantic-release@21 \
+            --package=conventional-changelog-conventionalcommits@5 \
+            --pakcage=@semantic-release/commit-analyzer@9 \
+            --package=@semantic-release/release-notes-generator@11 \
+            --package=@semantic-release/npm@10 \
+            --package=@semantic-release/git@10 \
+            --package=@semantic-release/github@8 \
+            semantic-release
+      - name: Publish to Visual Studio Marketplace
+        run: |
+          npx \
+            --package=@vscode/vsce@2 \
+            vsce publish \
+            -p ${{ secrets.VISUAL_STUDIO_MARKETPLACE_PAT }}
