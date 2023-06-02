@@ -1,0 +1,21 @@
+name: Commit Message Check
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "20"
+      - name: Install Commitlint
+        run: |
+          npm i @commitlint/cli@17
+          npm i @commitlint/config-conventional@17
+      - name: Check Commit Messages
+        run: |
+          npx commitlint --from=HEAD~1 --to HEAD --verbose

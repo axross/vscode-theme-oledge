@@ -12,23 +12,22 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "20"
+      - name: Install Semantic Release
+        run: |
+          npm i semantic-release@21
+          npm i conventional-changelog-conventionalcommits@5
+          npm i @semantic-release/commit-analyzer@9
+          npm i @semantic-release/release-notes-generator@11
+          npm i @semantic-release/changelog@6
+          npm i @semantic-release/npm@10
+          npm i @semantic-release/git@10
+          npm i @semantic-release/github@8
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npx \
-            --package=semantic-release@21 \
-            --package=conventional-changelog-conventionalcommits@5 \
-            --pakcage=@semantic-release/commit-analyzer@9 \
-            --package=@semantic-release/release-notes-generator@11 \
-            --package=@semantic-release/changelog@6 \
-            --package=@semantic-release/npm@10 \
-            --package=@semantic-release/git@10 \
-            --package=@semantic-release/github@8 \
-            semantic-release
+        run: npx semantic-release
+      - name: Install Visual Studio Code Extension Manager
+        run: npm i @vscode/vsce@2
       - name: Publish to Visual Studio Marketplace
         run: |
-          npx \
-            --package=@vscode/vsce@2 \
-            vsce publish \
-            -p ${{ secrets.VISUAL_STUDIO_MARKETPLACE_PAT }}
+          npx vsce publish -p ${{ secrets.VISUAL_STUDIO_MARKETPLACE_PAT }}
