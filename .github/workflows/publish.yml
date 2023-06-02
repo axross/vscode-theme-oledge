@@ -20,13 +20,11 @@ jobs:
           npm i @semantic-release/release-notes-generator@11
           npm i @semantic-release/changelog@6
           npm i @semantic-release/npm@10
+          npm i semantic-release-vsce@5
           npm i @semantic-release/git@10
           npm i @semantic-release/github@8
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: npx semantic-release
-      - name: Install Visual Studio Code Extension Manager
-        run: npm i @vscode/vsce@2
-      - name: Publish to Visual Studio Marketplace
-        run: npx vsce publish -p ${{ secrets.VISUAL_STUDIO_MARKETPLACE_PAT }}
