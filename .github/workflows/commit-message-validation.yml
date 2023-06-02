@@ -1,8 +1,6 @@
 name: Commit Message Validation
 on:
-  push:
-    branches-ignore:
-      - main
+  - pull_request
 jobs:
   validation:
     name: Validation
@@ -17,4 +15,4 @@ jobs:
           npm i @commitlint/cli@17
           npm i @commitlint/config-conventional@17
       - name: Check Commit Messages
-        run: npx commitlint --from HEAD~1 --to HEAD --verbose
+        run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
