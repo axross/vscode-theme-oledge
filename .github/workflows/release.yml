@@ -21,6 +21,7 @@ jobs:
             --package=conventional-changelog-conventionalcommits@5 \
             --pakcage=@semantic-release/commit-analyzer@9 \
             --package=@semantic-release/release-notes-generator@11 \
+            --package=@semantic-release/changelog@6 \
             --package=@semantic-release/npm@10 \
             --package=@semantic-release/git@10 \
             --package=@semantic-release/github@8 \
